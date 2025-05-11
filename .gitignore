@@ -1,0 +1,7 @@
+# Fichiers et dossiers spécifiques à l'environnement de développement
+venv/
+.env
+__pycache__/
+*.pyc
+.qodo
+.vscode/
