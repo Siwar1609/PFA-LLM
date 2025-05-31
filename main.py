@@ -54,6 +54,10 @@ def get_db():
 class PromptRequest(BaseModel):
     prompt: str
 
+@app.get("/")
+def root():
+    return {"message": "Bienvenue dans notre app"}
+
 @app.post("/generate")
 async def generate_response(request: PromptRequest, db: Session = Depends(get_db)):
     result = await generate_with_gemini(request.prompt)
@@ -79,12 +83,10 @@ async def analyze_text(request: TextRequest, db: Session = Depends(get_db)):
     labels = ["religious bias", "ethnic bias", "gender bias", "age bias", "political bias", "not biased"]
     bias_result = classifier(sequence, candidate_labels=labels)
 
-    biases = []
-    for label, score in zip(bias_result['labels'], bias_result['scores']):
-        biases.append({
-            "label": label,
-            "score_percentage": round(score * 100, 2)
-        })
+    biases = [
+        {"label": label, "score_percentage": round(score * 100, 2)}
+        for label, score in zip(bias_result['labels'], bias_result['scores'])
+    ]
 
     # Analyse du sentiment (conservée comme dans votre version initiale)
     sentiment_result = sentiment_analyzer(sequence)
