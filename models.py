@@ -9,8 +9,8 @@ class Prompt(Base):
     prompt_text = Column(Text, nullable=False)
     response_text = Column(Text)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
-    bias_analysis = Column(Text)  # Pour stocker les résultats d'analyse des biais
-    sentiment_analysis = Column(Text)  # Pour stocker les résultats d'analyse de sentiment
+    bias_analysis = Column(Text)  
+    sentiment_analysis = Column(Text)  
 
 # Créez les tables dans la base de données
 def init_db():
