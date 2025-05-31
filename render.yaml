@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: fastapi-llm-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: ./start.sh
+    envVars:
+      - key: HF_AUTH_TOKEN
+        value: "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"
+      - key: GEMINI_API_KEY
+        value: "AIzaSyCPaFrFmTQ9BNYZcrn9-D4faUdg5jhrqqY"
